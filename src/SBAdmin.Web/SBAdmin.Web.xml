@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SBAdmin.Web</name>
+    </assembly>
+    <members>
+        <member name="T:SBAdmin.Web.Program">
+            <summary>
+            Class Program
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Program.Main(System.String[])">
+            <summary>
+            The entry point to the app
+            </summary>
+            <param name="args">Args</param>
+        </member>
+        <member name="M:SBAdmin.Web.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Method creates host builder
+            </summary>
+            <param name="args">Args</param>
+            <returns>IHostBuilder</returns>
+        </member>
+        <member name="T:SBAdmin.Web.Startup">
+            <summary>
+            Class Startup.
+            Implements startup features
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Method configures services
+            </summary>
+            <param name="services">Services</param>
+        </member>
+        <member name="M:SBAdmin.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Startup})">
+            <summary>
+            Method gets called by the runtime to configure
+            the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="logger"></param>
+        </member>
+    </members>
+</doc>

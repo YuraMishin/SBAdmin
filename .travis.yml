@@ -1,0 +1,31 @@
+language: csharp
+mono: none
+dotnet: 5.0
+solution: ./SBAdmin.sln
+    
+sudo: required
+
+env:
+    global:
+      - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+      - DOTNET_NOLOGO: true
+      - DOTNET_GENERATE_ASPNET_CERTIFICATE: false
+      - DOTNET_ADD_GLOBAL_TOOLS_TO_PATH: false      
+
+script:
+  - echo "Start script"  
+  - dotnet restore  
+  - dotnet build --no-restore
+  - dotnet test --no-build /p:CoverletOutputFormat=opencover
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    recipients:
+      - mishin.inbox@gmail.com
+    on_success: never # default: change
+    on_failure: always # default: always
+    
