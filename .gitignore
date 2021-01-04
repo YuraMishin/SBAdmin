@@ -443,3 +443,9 @@ manual.txt
 /.editorconfig
 /Makefile
 /src/SBAdmin.Web/D:
+/src/SBAdmin.Web/package-lock.json
+/src/SBAdmin.Web/mix-manifest.json
+/src/SBAdmin.Web/package.json
+/src/SBAdmin.Web/webpack.mix.js
+/src/SBAdmin.Web/Resources/SBAdmin/
+/Makefile-prod

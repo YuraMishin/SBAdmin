@@ -4,6 +4,19 @@
         <name>SBAdmin.Web</name>
     </assembly>
     <members>
+        <member name="T:SBAdmin.Web.Controllers.HomeController">
+            <summary>
+            Class HomeController.
+            Implements rooting 
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.HomeController.Index">
+            <summary>
+            Method displays home page.
+            GET: /
+            </summary>
+            <returns>IActionResult</returns>
+        </member>
         <member name="T:SBAdmin.Web.Program">
             <summary>
             Class Program

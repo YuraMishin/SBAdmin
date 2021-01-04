@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace SBAdmin.Web.Controllers
 {
     /// <summary>
-    /// Class HomeController.
-    /// Implements guest rooting 
+    /// Class AdminController.
+    /// Implements admin rooting
     /// </summary>
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
         /// <summary>
-        /// Method displays home page.
-        /// GET: /
+        /// Method displays admin home page.
+        /// GET: /admin
         /// </summary>
-        /// <returns>IActionResult</returns>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View("Index");

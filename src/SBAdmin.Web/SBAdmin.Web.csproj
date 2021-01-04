@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="wwwroot\" />
-    <Folder Include="node_modules\" />
+      <Folder Include="wwwroot\css" />
+      <Folder Include="wwwroot\js" />
+      <Folder Include="wwwroot\images" />
+      <Folder Include="node_modules\" />
   </ItemGroup>
 
 </Project>

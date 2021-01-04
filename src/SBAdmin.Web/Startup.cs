@@ -42,6 +42,18 @@ namespace SBAdmin.Web
             {
                 logger.LogInformation("Development mode");
                 app.UseDeveloperExceptionPage();
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "Resources")),
+                    RequestPath = "/Resources"
+                });
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "node_modules")),
+                    RequestPath = "/node_modules"
+                });
             }
             if (env.IsProduction())
             {
@@ -50,18 +62,6 @@ namespace SBAdmin.Web
 
             // add support folder
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "Resources")),
-                RequestPath = "/Resources"
-            });
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "node_modules")),
-                RequestPath = "/node_modules"
-            });
 
             app.UseRouting();
 
