@@ -1,8 +1,15 @@
 ﻿@{
-    Layout = "admin/_Layout";
+    Layout = "Admin/_Layout";
     ViewData["Title"] = "Dashboard - SB Admin";
 }
 
 <div>
-    <p>Admin page</p>
+    @* _IconCards *@
+    <partial name="Admin/_IconCards" />
+
+    @* _AreaChart *@
+    <partial name="Admin/_AreaChart" />
+
+    @* _DataTables *@
+    <partial name="Admin/_DataTables" />
 </div>

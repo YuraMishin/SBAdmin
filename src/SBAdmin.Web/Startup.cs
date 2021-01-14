@@ -45,7 +45,7 @@ namespace SBAdmin.Web
                 app.UseStaticFiles(new StaticFileOptions
                 {
                     FileProvider = new PhysicalFileProvider(
-                        Path.Combine(env.ContentRootPath, "Resources")),
+                        Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
                     RequestPath = "/Resources"
                 });
                 app.UseStaticFiles(new StaticFileOptions
