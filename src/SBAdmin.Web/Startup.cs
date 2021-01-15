@@ -97,9 +97,9 @@ namespace SBAdmin.Web
             // add support folder
             app.UseStaticFiles();
 
-            app.UseRouting();
-
             app.UseAuthentication();
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

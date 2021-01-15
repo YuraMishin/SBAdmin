@@ -10,12 +10,33 @@
             Implements admin rooting
             </summary>
         </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userManager">UserManager</param>
+        </member>
         <member name="M:SBAdmin.Web.Controllers.AdminController.Index">
             <summary>
             Method displays admin home page.
             GET: /admin
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.Register">
+            <summary>
+            Method displays registration page.
+            GET: /register
+            </summary>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.Register(SBAdmin.Web.ViewModels.RegistrationViewModel)">
+            <summary>
+            Method handles registration feature.
+            POST: /register
+            </summary>
+            <param name="model">Model</param>
+            <returns>IActionResult</returns>
         </member>
         <member name="T:SBAdmin.Web.Controllers.HomeController">
             <summary>
@@ -40,6 +61,30 @@
             Constructor
             </summary>
             <param name="options">AppContext</param>
+        </member>
+        <member name="T:SBAdmin.Web.Migrations.Initial">
+            <summary>
+            Class Initial.
+            Implements initial database migration
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method performs the migration
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method rollbacks the migration
+            </summary>
+            <param name="migrationBuilder"></param>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method implements the migration
+            </summary>
+            <param name="modelBuilder"></param>
         </member>
         <member name="T:SBAdmin.Web.Models.User">
             <summary>
@@ -106,6 +151,37 @@
             <param name="app"></param>
             <param name="env"></param>
             <param name="logger"></param>
+        </member>
+        <member name="T:SBAdmin.Web.ViewModels.RegistrationViewModel">
+            <summary>
+            Class RegistrationViewModel.
+            Implements Registration View Model
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.UserName">
+            <summary>
+            User Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.ConfirmPassword">
+            <summary>
+            Confirm Password
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.FirstName">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.LastName">
+            <summary>
+            LastName
+            </summary>
         </member>
     </members>
 </doc>

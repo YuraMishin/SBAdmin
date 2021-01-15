@@ -1,11 +1,19 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SBAdmin.Web.Migrations
 {
+    /// <summary>
+    /// Class Initial.
+    /// Implements initial database migration
+    /// </summary>
     public partial class Initial : Migration
     {
+        /// <summary>
+        /// Method performs the migration
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -193,6 +201,10 @@ namespace SBAdmin.Web.Migrations
                 unique: true);
         }
 
+        /// <summary>
+        /// Method rollbacks the migration
+        /// </summary>
+        /// <param name="migrationBuilder"></param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
