@@ -2,10 +2,15 @@ using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SBAdmin.Web.Data;
+using SBAdmin.Web.Models;
 
 namespace SBAdmin.Web
 {
@@ -16,11 +21,40 @@ namespace SBAdmin.Web
     public class Startup
     {
         /// <summary>
+        /// Configuration
+        /// </summary>
+        public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration">IConfiguration</param>
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        /// <summary>
         /// Method configures services
         /// </summary>
         /// <param name="services">Services</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Authentication
+            services.AddAuthentication();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            // DB connection
+            services.AddDbContext<AppDbContext>(
+                option =>
+                {
+                    option.EnableSensitiveDataLogging();
+                    option.EnableDetailedErrors();
+                    option.UseNpgsql(
+                        Configuration.GetConnectionString("SBAdmin.dev"));
+                });
+
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
@@ -64,6 +98,8 @@ namespace SBAdmin.Web
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

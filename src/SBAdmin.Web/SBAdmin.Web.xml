@@ -30,6 +30,33 @@
             </summary>
             <returns>IActionResult</returns>
         </member>
+        <member name="T:SBAdmin.Web.Data.AppDbContext">
+            <summary>
+            Class implements AppDbContext
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Data.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{SBAdmin.Web.Data.AppDbContext})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="options">AppContext</param>
+        </member>
+        <member name="T:SBAdmin.Web.Models.User">
+            <summary>
+            Class User.
+            Implements User Entity
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.Models.User.FirstName">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.Models.User.LastName">
+            <summary>
+            Last Name
+            </summary>
+        </member>
         <member name="T:SBAdmin.Web.Program">
             <summary>
             Class Program
@@ -53,6 +80,17 @@
             Class Startup.
             Implements startup features
             </summary>
+        </member>
+        <member name="P:SBAdmin.Web.Startup.Configuration">
+            <summary>
+            Configuration
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration">IConfiguration</param>
         </member>
         <member name="M:SBAdmin.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
