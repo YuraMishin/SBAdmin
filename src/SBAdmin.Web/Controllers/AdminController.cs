@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SBAdmin.Web.Models;
@@ -13,14 +15,19 @@ namespace SBAdmin.Web.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="userManager">UserManager</param>
-        public AdminController(UserManager<User> userManager)
+        public AdminController(
+            UserManager<User> userManager,
+            SignInManager<User> signInManager
+            )
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
 
@@ -29,6 +36,7 @@ namespace SBAdmin.Web.Controllers
         /// GET: /admin
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public IActionResult Index()
         {
@@ -78,6 +86,38 @@ namespace SBAdmin.Web.Controllers
             }
 
             return View("Register");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View("Login");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(
+                        model.UserName,
+                        model.Password,
+                        model.RememberMe,
+                        false);
+                if (result.Succeeded)
+                {
+                    if (Request.Query.Keys.Contains("ReturnUrl"))
+                    {
+                        return Redirect(Request.Query["ReturnUrl"].FirstOrDefault());
+                    }
+
+                    return RedirectToAction("Index", "Admin");
+                }
+                ModelState.AddModelError("", "Failed to Login");
+            }
+
+
+            return View("Login");
         }
     }
 }

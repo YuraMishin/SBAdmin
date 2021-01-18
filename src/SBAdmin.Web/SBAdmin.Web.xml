@@ -10,7 +10,7 @@
             Implements admin rooting
             </summary>
         </member>
-        <member name="M:SBAdmin.Web.Controllers.AdminController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User})">
+        <member name="M:SBAdmin.Web.Controllers.AdminController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User},Microsoft.AspNetCore.Identity.SignInManager{SBAdmin.Web.Models.User})">
             <summary>
             Constructor
             </summary>
@@ -151,6 +151,16 @@
             <param name="app"></param>
             <param name="env"></param>
             <param name="logger"></param>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.LoginViewModel.UserName">
+            <summary>
+            User Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.LoginViewModel.Password">
+            <summary>
+            Password
+            </summary>
         </member>
         <member name="T:SBAdmin.Web.ViewModels.RegistrationViewModel">
             <summary>

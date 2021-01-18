@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,8 @@ namespace SBAdmin.Web
         {
             // Authentication
             services.AddAuthentication();
+
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
@@ -57,6 +60,15 @@ namespace SBAdmin.Web
 
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.LoginPath = "/Admin/Login";
+                options.SlidingExpiration = true;
+            });
         }
 
         /// <summary>
@@ -97,9 +109,11 @@ namespace SBAdmin.Web
             // add support folder
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

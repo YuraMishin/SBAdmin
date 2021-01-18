@@ -28,12 +28,9 @@
                                                 <div class="form-group">
                                                     <label class="small mb-1"
                                                            asp-for="FirstName">
-                                                        First Name
                                                     </label>
                                                     <input class="form-control py-4"
                                                            asp-for="FirstName"
-                                                           id="FirstName"
-                                                           type="text"
                                                            required="required"
                                                            placeholder="Enter first name" />
                                                     <span asp-validation-for="FirstName"
@@ -45,12 +42,9 @@
                                                 <div class="form-group">
                                                     <label class="small mb-1"
                                                            asp-for="LastName">
-                                                        Last Name
                                                     </label>
                                                     <input class="form-control py-4"
                                                            asp-for="LastName"
-                                                           id="LastName"
-                                                           type="text"
                                                            required="required"
                                                            placeholder="Enter last name" />
                                                     <span asp-validation-for="LastName"
@@ -63,7 +57,6 @@
                                             <label class="small mb-1" asp-for="UserName"></label>
                                             <input class="form-control py-4"
                                                    asp-for="UserName"
-                                                   id="UserName"
                                                    type="email"
                                                    required="required"
                                                    aria-describedby="emailHelp"
@@ -75,10 +68,9 @@
                                         <div class="form-row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" asp-for="Password">Password</label>
+                                                    <label class="small mb-1" asp-for="Password"></label>
                                                     <input class="form-control py-4"
                                                            asp-for="Password"
-                                                           id="Password"
                                                            type="password"
                                                            placeholder="Enter password"
                                                            required="required" />
@@ -89,10 +81,9 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="small mb-1" asp-for="ConfirmPassword">Confirm Password</label>
+                                                    <label class="small mb-1" asp-for="ConfirmPassword"></label>
                                                     <input class="form-control py-4"
                                                            asp-for="ConfirmPassword"
-                                                           id="ConfirmPassword"
                                                            type="password"
                                                            required="required"
                                                            placeholder="Confirm password" />
@@ -108,7 +99,11 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <div class="small"><a href="login.html">Have an account? Go to login</a></div>
+                                    <div class="small">
+                                        <a asp-action="Login">
+                                            Have an account? Go to login
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
