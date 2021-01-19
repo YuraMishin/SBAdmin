@@ -119,5 +119,15 @@ namespace SBAdmin.Web.Controllers
 
             return View("Login");
         }
+
+        public async Task<IActionResult> Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
