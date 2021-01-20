@@ -48,6 +48,7 @@ namespace SBAdmin.Web.Controllers
         /// GET: /register
         /// </summary>
         /// <returns>IActionResult</returns>
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
@@ -60,6 +61,7 @@ namespace SBAdmin.Web.Controllers
         /// </summary>
         /// <param name="model">Model</param>
         /// <returns>IActionResult</returns>
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationViewModel model)
         {
@@ -88,12 +90,14 @@ namespace SBAdmin.Web.Controllers
             return View("Register");
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             return View("Login");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -120,6 +124,7 @@ namespace SBAdmin.Web.Controllers
             return View("Login");
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             if (User.Identity.IsAuthenticated)
