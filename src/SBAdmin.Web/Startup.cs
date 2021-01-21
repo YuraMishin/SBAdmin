@@ -58,6 +58,12 @@ namespace SBAdmin.Web
                         Configuration.GetConnectionString("SBAdmin.dev"));
                 });
 
+            #region Dependency Injection
+
+            services.AddScoped<RoleManager<IdentityRole>>();
+
+            #endregion
+
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 

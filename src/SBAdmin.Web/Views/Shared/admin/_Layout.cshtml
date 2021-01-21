@@ -10,8 +10,8 @@
 
     @* CSS section *@
     <environment include="Development">
-        <link href="Resources/SBAdmin/css/styles.css" rel="stylesheet" />
-        <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <link href="~/Resources/SBAdmin/css/styles.css" rel="stylesheet" />
+        @RenderSection("Styles", required: false)
     </environment>
     <environment include="Production">
         <link href="~/css/admin/styles.min.css" rel="stylesheet">
@@ -32,10 +32,9 @@
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">Dashboard</h1>
-                    @* _Breadcrumb *@
-                    <partial name="_Breadcrumb.cshtml" />
 
                     @RenderBody()
+
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">
@@ -56,20 +55,14 @@
 
     @* Scripts section *@
     <environment include="Development">
-        <script src="Resources/SBAdmin/vendors/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/vendors/jquery/3.5.1/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/vendors/bootstrap/4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/js/scripts.js"></script>
-        <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
-        <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
-        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
+        <script src="~/Resources/SBAdmin/vendors/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <script src="~/Resources/SBAdmin/vendors/jquery/3.5.1/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="~/Resources/SBAdmin/vendors/bootstrap/4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="~/Resources/SBAdmin/js/scripts.js"></script>
+        @RenderSection("Scripts", required: false)
     </environment>
     <environment include="Production">
         <script src="~/js/admin/scripts.min.js" crossorigin="anonymous"></script>
     </environment>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>
