@@ -2,6 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SBAdmin.Web.ViewModels
 {
+    /// <summary>
+    /// Class LoginViewModel.
+    /// Implements Login View Model
+    /// </summary>
     public class LoginViewModel
     {
         /// <summary>
@@ -18,6 +22,9 @@ namespace SBAdmin.Web.ViewModels
         [Required, DataType(DataType.Password), MaxLength(50)]
         public string Password { get; set; }
 
+        /// <summary>
+        /// Remember Me
+        /// </summary>
         [Display(Name = "Remember Me")]
         public bool RememberMe { get; set; }
     }

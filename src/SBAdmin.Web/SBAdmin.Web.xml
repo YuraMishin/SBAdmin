@@ -51,6 +51,38 @@
             </summary>
             <returns>IActionResult</returns>
         </member>
+        <member name="T:SBAdmin.Web.Controllers.UserController">
+            <summary>
+            Class UserController.
+            Implements user management feature
+            </summary>
+        </member>
+        <member name="F:SBAdmin.Web.Controllers.UserController._userManager">
+            <summary>
+            UserManager
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="userManager">userManager</param>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Profile">
+            <summary>
+            Method displays update profile UI
+            GET: /user/profile
+            </summary>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Profile(SBAdmin.Web.ViewModels.UserViewModel)">
+            <summary>
+            Method updates profile
+            POST: /user/profile
+            </summary>
+            <param name="model">model</param>
+            <returns>Task&lt;IActionResult&gt;</returns>
+        </member>
         <member name="T:SBAdmin.Web.Data.AppDbContext">
             <summary>
             Class implements AppDbContext

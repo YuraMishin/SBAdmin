@@ -20,7 +20,8 @@ namespace SBAdmin.Web.Controllers
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="userManager">UserManager</param>
+        /// <param name="userManager">userManager</param>
+        /// <param name="signInManager">signInManager</param>
         public AdminController(
             UserManager<User> userManager,
             SignInManager<User> signInManager
@@ -93,6 +94,11 @@ namespace SBAdmin.Web.Controllers
             return View("Register");
         }
 
+        /// <summary>
+        /// Method displays Login UI
+        /// GET: /admin/login
+        /// </summary>
+        /// <returns>IActionResult</returns>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
@@ -100,6 +106,12 @@ namespace SBAdmin.Web.Controllers
             return View("Login");
         }
 
+        /// <summary>
+        /// Methods handles login
+        /// POST: /admin/login
+        /// </summary>
+        /// <param name="model">model</param>
+        /// <returns>Task&lt;IActionResult&gt;</returns>
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -127,6 +139,11 @@ namespace SBAdmin.Web.Controllers
             return View("Login");
         }
 
+        /// <summary>
+        /// Method handles logout
+        /// GET: /admin/logout
+        /// </summary>
+        /// <returns>Task&lt;IActionResult&gt;</returns>
         [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
