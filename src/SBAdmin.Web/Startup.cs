@@ -44,8 +44,10 @@ namespace SBAdmin.Web
             // Authentication
             services.AddAuthentication();
 
-
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 4;
+                })
                 .AddEntityFrameworkStores<AppDbContext>();
 
             // DB connection

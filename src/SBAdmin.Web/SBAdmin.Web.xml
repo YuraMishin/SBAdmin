@@ -14,7 +14,8 @@
             <summary>
             Constructor
             </summary>
-            <param name="userManager">UserManager</param>
+            <param name="userManager">userManager</param>
+            <param name="signInManager">signInManager</param>
         </member>
         <member name="M:SBAdmin.Web.Controllers.AdminController.Index">
             <summary>
@@ -38,6 +39,28 @@
             <param name="model">Model</param>
             <returns>IActionResult</returns>
         </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.Login">
+            <summary>
+            Method displays Login UI
+            GET: /admin/login
+            </summary>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.Login(SBAdmin.Web.ViewModels.LoginViewModel)">
+            <summary>
+            Methods handles login
+            POST: /admin/login
+            </summary>
+            <param name="model">model</param>
+            <returns>Task&lt;IActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.AdminController.Logout">
+            <summary>
+            Method handles logout
+            GET: /admin/logout
+            </summary>
+            <returns>Task&lt;IActionResult&gt;</returns>
+        </member>
         <member name="T:SBAdmin.Web.Controllers.HomeController">
             <summary>
             Class HomeController.
@@ -51,6 +74,92 @@
             </summary>
             <returns>IActionResult</returns>
         </member>
+        <member name="T:SBAdmin.Web.Controllers.RoleController">
+            <summary>
+            Class RoleController
+            Implements role management
+            </summary>
+        </member>
+        <member name="F:SBAdmin.Web.Controllers.RoleController._roleManager">
+            <summary>
+            RoleManager
+            </summary>
+        </member>
+        <member name="F:SBAdmin.Web.Controllers.RoleController._logger">
+            <summary>
+            Logger
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.#ctor(Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole},Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Controllers.RoleController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="roleManager">roleManager</param>
+            <param name="logger">logger</param>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Index">
+            <summary>
+            Method displays Role UI
+            GET: /role/
+            </summary>
+            <returns>ActionResult</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Details(System.String)">
+            <summary>
+            Method displays role details UI
+            GET: RoleController/Details/5
+            </summary>
+            <param name="name">name</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Create">
+            <summary>
+            Method displays create UI
+            GET: RoleController/Create
+            </summary>
+            <returns>ActionResult</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Create(SBAdmin.Web.ViewModels.RolesViewModel)">
+            <summary>
+            Method handles create role feature
+            POST: RoleController/Create
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Edit(System.String)">
+            <summary>
+            Method displays edit role UI.
+            RoleController/Edit/5
+            </summary>
+            <param name="name">name</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Edit(System.String,System.String)">
+            <summary>
+            Method handles edit role feature.
+            RoleController/Edit/5
+            </summary>
+            <param name="id">id</param>
+            <param name="name">name</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.Delete(System.String)">
+            <summary>
+            Method displays delete role UI. 
+            Get: /RoleController/Delete/5 
+            </summary>
+            <param name="name">name</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.RoleController.DeleteConfirmed(System.String)">
+            <summary>
+            Method handles delete role feature.
+            POST: RoleController/Delete/5
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:SBAdmin.Web.Controllers.UserController">
             <summary>
             Class UserController.
@@ -62,11 +171,12 @@
             UserManager
             </summary>
         </member>
-        <member name="M:SBAdmin.Web.Controllers.UserController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User})">
+        <member name="M:SBAdmin.Web.Controllers.UserController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User},Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Controllers.UserController})">
             <summary>
             Constructor
             </summary>
             <param name="userManager">userManager</param>
+            <param name="logger">logger</param>
         </member>
         <member name="M:SBAdmin.Web.Controllers.UserController.Profile">
             <summary>
@@ -79,6 +189,21 @@
             <summary>
             Method updates profile
             POST: /user/profile
+            </summary>
+            <param name="model">model</param>
+            <returns>Task&lt;IActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.ChangePassword">
+            <summary>
+            Method displays change password UI.
+            GET: /user/changepassword
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.ChangePassword(SBAdmin.Web.ViewModels.ChangePasswordViewModel)">
+            <summary>
+            Method handles change password.
+            POST: /user/changepassword
             </summary>
             <param name="model">model</param>
             <returns>Task&lt;IActionResult&gt;</returns>
@@ -184,6 +309,33 @@
             <param name="env"></param>
             <param name="logger"></param>
         </member>
+        <member name="T:SBAdmin.Web.ViewModels.ChangePasswordViewModel">
+            <summary>
+            Class ChangePasswordViewModel.
+            Implements Change Password View Model
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.ChangePasswordViewModel.OldPassword">
+            <summary>
+            Old password
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.ChangePasswordViewModel.NewPassword">
+            <summary>
+            New password
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.ChangePasswordViewModel.ConfirmNewPassword">
+            <summary>
+            Confirm New Password
+            </summary>
+        </member>
+        <member name="T:SBAdmin.Web.ViewModels.LoginViewModel">
+            <summary>
+            Class LoginViewModel.
+            Implements Login View Model
+            </summary>
+        </member>
         <member name="P:SBAdmin.Web.ViewModels.LoginViewModel.UserName">
             <summary>
             User Name
@@ -192,6 +344,11 @@
         <member name="P:SBAdmin.Web.ViewModels.LoginViewModel.Password">
             <summary>
             Password
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.LoginViewModel.RememberMe">
+            <summary>
+            Remember Me
             </summary>
         </member>
         <member name="T:SBAdmin.Web.ViewModels.RegistrationViewModel">
@@ -223,6 +380,68 @@
         <member name="P:SBAdmin.Web.ViewModels.RegistrationViewModel.LastName">
             <summary>
             LastName
+            </summary>
+        </member>
+        <member name="T:SBAdmin.Web.ViewModels.RolesViewModel">
+            <summary>
+            Class RolesViewModel.
+            Implements Roles View Model
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RolesViewModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RolesViewModel.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.RolesViewModel.Selected">
+            <summary>
+            Selected
+            </summary>
+        </member>
+        <member name="T:SBAdmin.Web.ViewModels.UserViewModel">
+            <summary>
+            Class UserViewModel.
+            Implements User View Model
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.Id">
+            <summary>
+             Id
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.FirstName">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.LastName">
+            <summary>
+            Last Name
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.Phone">
+            <summary>
+            Phone No
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.UserInRoles">
+            <summary>
+            User in roles
+            </summary>
+        </member>
+        <member name="P:SBAdmin.Web.ViewModels.UserViewModel.IsLockedOut">
+            <summary>
+            Is Locked Out
             </summary>
         </member>
     </members>

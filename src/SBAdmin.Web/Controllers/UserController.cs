@@ -1,8 +1,10 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SBAdmin.Web.Models;
 using SBAdmin.Web.ViewModels;
 
@@ -19,13 +21,17 @@ namespace SBAdmin.Web.Controllers
         /// </summary>
         private readonly UserManager<User> _userManager;
 
+        private readonly ILogger<UserController> _logger;
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="userManager">userManager</param>
-        public UserController(UserManager<User> userManager)
+        /// <param name="logger">logger</param>
+        public UserController(UserManager<User> userManager, ILogger<UserController> logger)
         {
             _userManager = userManager;
+            _logger = logger;
         }
 
         /// <summary>
@@ -56,6 +62,7 @@ namespace SBAdmin.Web.Controllers
         /// <param name="model">model</param>
         /// <returns>Task&lt;IActionResult&gt;</returns>
         [HttpPost]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Profile(UserViewModel model)
         {
             if (ModelState.IsValid)
@@ -79,6 +86,53 @@ namespace SBAdmin.Web.Controllers
                     ViewData["message"] = "Profile Update Error!";
             }
             return View();
+        }
+
+        /// <summary>
+        /// Method displays change password UI.
+        /// GET: /user/changepassword
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Method handles change password.
+        /// POST: /user/changepassword
+        /// </summary>
+        /// <param name="model">model</param>
+        /// <returns>Task&lt;IActionResult&gt;</returns>
+        [HttpPost]
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = await _userManager.FindByEmailAsync(User.Identity.Name);
+                    var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    ModelState.AddModelError("", "Password could not be changed due to error.");
+                    return View();
+                }
+                ModelState.AddModelError("", "Password could not be changed due to error.");
+                return View();
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+                ModelState.AddModelError("", "Password could not be changed due to error.");
+                return View();
+            }
         }
     }
 }
