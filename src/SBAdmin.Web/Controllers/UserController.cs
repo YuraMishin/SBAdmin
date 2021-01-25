@@ -21,17 +21,31 @@ namespace SBAdmin.Web.Controllers
         /// </summary>
         private readonly UserManager<User> _userManager;
 
+        /// <summary>
+        /// ILogger
+        /// </summary>
         private readonly ILogger<UserController> _logger;
+
+        /// <summary>
+        /// RoleManager
+        /// </summary>
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="userManager">userManager</param>
         /// <param name="logger">logger</param>
-        public UserController(UserManager<User> userManager, ILogger<UserController> logger)
+        /// <param name="roleManager">roleManager</param>
+        public UserController(
+            UserManager<User> userManager,
+            ILogger<UserController> logger,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _logger = logger;
+            _roleManager = roleManager;
+
         }
 
         /// <summary>
@@ -140,6 +154,7 @@ namespace SBAdmin.Web.Controllers
         /// GET: /user
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var users = _userManager.Users.Select(user => new UserViewModel
@@ -151,6 +166,63 @@ namespace SBAdmin.Web.Controllers
             });
 
             return View(users);
+        }
+
+        /// <summary>
+        /// Method displays user details UI.
+        /// GET: User/Details/5
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>Task&lt;ActionResult&gt;</returns>
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Details(string id)
+        {
+            var user = _userManager.Users.Where(x => x.Id == id).FirstOrDefault();
+            var roles = _roleManager.Roles.ToList();
+            var userRoles = (await _userManager.GetRolesAsync(user)).ToList();
+            var model = new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Phone = user.PhoneNumber,
+                UserInRoles = roles.Select(x => new RolesViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Selected = userRoles.Exists(y => y == x.Name)
+                }).ToList()
+            };
+            return View(model);
+        }
+
+        /// <summary>
+        /// Method handles user details.
+        /// /// POST: User/Details/5
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <param name="model">model</param>
+        /// <returns>Task&lt;ActionResult&gt;</returns>
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Details(string id, UserViewModel model)
+        {
+            var user = _userManager.Users.First(x => x.Id == id);
+            var roles = _roleManager.Roles.ToList();
+            foreach (var item in model.UserInRoles)
+            {
+                if (item.Selected)
+                {
+                    await _userManager.AddToRoleAsync(user, roles.First(x => x.Id == item.Id).Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, roles.First(x => x.Id == item.Id).Name);
+                }
+            }
+            return RedirectToAction("Details", new { id });
         }
     }
 }

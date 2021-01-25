@@ -1,0 +1,70 @@
+﻿@model UserViewModel
+
+@{
+    Layout = "Admin/_Layout";
+    ViewData["Title"] = "Details";
+}
+@section Styles{
+    @{
+        <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    }
+}
+<div>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item active">Users</li>
+    </ol>
+    <h2>User Details</h2>
+    @* Body *@
+    <div class="container">
+        <div class="row">
+            <dl class="list-group-horizontal">
+                <dt>@Html.DisplayNameFor(model => model.FirstName)</dt>
+                <dd>@Html.DisplayFor(model => model.FirstName)</dd>
+                <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
+                <dd>@Html.DisplayFor(model => model.LastName)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                <dd>@Html.DisplayFor(model => model.Email)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+                <dd>@Html.DisplayFor(model => model.Phone)</dd>
+            </dl>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <label>User in the roles</label>
+            </div>
+            <div class="row">
+                <form asp-action="details">
+                    @for (int i = 0; i < Model.UserInRoles.Count; i++)
+                    {
+                        <div>
+                            @Html.HiddenFor(x => Model.UserInRoles[i].Id)
+                            @Html.CheckBoxFor(x => Model.UserInRoles[i].Selected, new { @class = "form-check-input" })
+                            <label class="form-check-label">@Model.UserInRoles[i].Name</label>
+                        </div>
+                    }
+                    <input type="submit" value="Update" class="btn btn-success" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a asp-controller="User" asp-action="Index">Back To List</a>
+    </div>
+    
+
+
+
+</div>
+
+@section Scripts{
+    @{
+        <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
+        <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
+        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
+    }
+}

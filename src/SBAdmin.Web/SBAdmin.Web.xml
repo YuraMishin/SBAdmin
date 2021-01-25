@@ -171,12 +171,23 @@
             UserManager
             </summary>
         </member>
-        <member name="M:SBAdmin.Web.Controllers.UserController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User},Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Controllers.UserController})">
+        <member name="F:SBAdmin.Web.Controllers.UserController._logger">
+            <summary>
+            ILogger
+            </summary>
+        </member>
+        <member name="F:SBAdmin.Web.Controllers.UserController._roleManager">
+            <summary>
+            RoleManager
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.#ctor(Microsoft.AspNetCore.Identity.UserManager{SBAdmin.Web.Models.User},Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Controllers.UserController},Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole})">
             <summary>
             Constructor
             </summary>
             <param name="userManager">userManager</param>
             <param name="logger">logger</param>
+            <param name="roleManager">roleManager</param>
         </member>
         <member name="M:SBAdmin.Web.Controllers.UserController.Profile">
             <summary>
@@ -214,6 +225,23 @@
             GET: /user
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Details(System.String)">
+            <summary>
+            Method displays user details UI.
+            GET: User/Details/5
+            </summary>
+            <param name="id">id</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Details(System.String,SBAdmin.Web.ViewModels.UserViewModel)">
+            <summary>
+            Method handles user details.
+            /// POST: User/Details/5
+            </summary>
+            <param name="id">id</param>
+            <param name="model">model</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
         </member>
         <member name="T:SBAdmin.Web.Data.AppDbContext">
             <summary>
