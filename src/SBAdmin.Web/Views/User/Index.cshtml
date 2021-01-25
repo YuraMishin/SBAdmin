@@ -1,0 +1,66 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{
+    Layout = "Admin/_Layout";
+    ViewData["Title"] = "List of Users";
+}
+@section Styles{
+    @{
+        <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    }
+}
+<div>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item active">Users</li>
+    </ol>
+    <h2>User List</h2>
+
+    @* Body *@
+    <table class="table">
+        <thead>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(modelItem => item.Id)
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</div>
+
+@section Scripts{
+    @{
+        <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
+        <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
+        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
+    }
+}

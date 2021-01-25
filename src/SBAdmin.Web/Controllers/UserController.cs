@@ -134,6 +134,24 @@ namespace SBAdmin.Web.Controllers
                 return View();
             }
         }
+
+        /// <summary>
+        /// Method displays list of users.
+        /// GET: /user
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
+        {
+            var users = _userManager.Users.Select(user => new UserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            });
+
+            return View(users);
+        }
     }
 }
 

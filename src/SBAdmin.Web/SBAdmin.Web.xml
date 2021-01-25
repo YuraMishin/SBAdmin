@@ -208,6 +208,13 @@
             <param name="model">model</param>
             <returns>Task&lt;IActionResult&gt;</returns>
         </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Index">
+            <summary>
+            Method displays list of users.
+            GET: /user
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SBAdmin.Web.Data.AppDbContext">
             <summary>
             Class implements AppDbContext
