@@ -243,6 +243,14 @@
             <param name="model">model</param>
             <returns>Task&lt;ActionResult&gt;</returns>
         </member>
+        <member name="M:SBAdmin.Web.Controllers.UserController.Delete(System.String)">
+            <summary>
+            Method handles delete user.
+            GET: User/Delete/5
+            </summary>
+            <param name="id">id</param>
+            <returns>Task&lt;ActionResult&gt;</returns>
+        </member>
         <member name="T:SBAdmin.Web.Data.AppDbContext">
             <summary>
             Class implements AppDbContext

@@ -224,6 +224,20 @@ namespace SBAdmin.Web.Controllers
             }
             return RedirectToAction("Details", new { id });
         }
+
+        /// <summary>
+        /// Method handles delete user.
+        /// GET: User/Delete/5
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>Task&lt;ActionResult&gt;</returns>
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var user = _userManager.Users.First(x => x.Id == id);
+            await _userManager.DeleteAsync(user);
+            return RedirectToAction("Index");
+        }
     }
 }
 

@@ -53,6 +53,13 @@
                            title="Details">
                             <span class="fa fa-user"></span>&nbsp;Details
                         </a>
+                        <a class="btn btn-danger"
+                           asp-action="Delete"
+                           asp-controller="User"
+                           asp-route-id="@item.Id"
+                           title="Delete">
+                            <span class="fa fa-user"></span>&nbsp;Delete
+                        </a>
                     </td>
                 </tr>
             }
