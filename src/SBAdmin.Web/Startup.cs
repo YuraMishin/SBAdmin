@@ -21,6 +21,8 @@ namespace SBAdmin.Web
     /// </summary>
     public class Startup
     {
+        private readonly IWebHostEnvironment _env;
+
         /// <summary>
         /// Configuration
         /// </summary>
@@ -30,8 +32,10 @@ namespace SBAdmin.Web
         /// Constructor
         /// </summary>
         /// <param name="configuration">IConfiguration</param>
-        public Startup(IConfiguration configuration)
+        /// <param name="env">env</param>
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
+            _env = env;
             Configuration = configuration;
         }
 
@@ -51,14 +55,29 @@ namespace SBAdmin.Web
                 .AddEntityFrameworkStores<AppDbContext>();
 
             // DB connection
-            services.AddDbContext<AppDbContext>(
-                option =>
-                {
-                    option.EnableSensitiveDataLogging();
-                    option.EnableDetailedErrors();
-                    option.UseNpgsql(
-                        Configuration.GetConnectionString("SBAdmin.dev"));
-                });
+            if (_env.IsDevelopment())
+            {
+                services.AddDbContext<AppDbContext>(
+                    option =>
+                    {
+                        option.EnableSensitiveDataLogging();
+                        option.EnableDetailedErrors();
+                        option.UseNpgsql(
+                            Configuration.GetConnectionString("SBAdmin.dev"));
+                    });
+            }
+
+            if (_env.IsProduction())
+            {
+                services.AddDbContext<AppDbContext>(
+                    option =>
+                    {
+                        option.EnableSensitiveDataLogging();
+                        option.EnableDetailedErrors();
+                        option.UseNpgsql(
+                            Configuration.GetConnectionString("SBAdmin.prod"));
+                    });
+            }
 
             #region Dependency Injection
 
@@ -73,7 +92,7 @@ namespace SBAdmin.Web
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
                 options.LoginPath = "/Admin/Login";
                 options.SlidingExpiration = true;
             });
@@ -84,15 +103,13 @@ namespace SBAdmin.Web
         /// the HTTP request pipeline.
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="env"></param>
         /// <param name="logger"></param>
         public void Configure(
             IApplicationBuilder app,
-            IWebHostEnvironment env,
             ILogger<Startup> logger)
         {
             logger.LogInformation("App is running. Enjoy!");
-            if (env.IsDevelopment())
+            if (_env.IsDevelopment())
             {
                 logger.LogInformation("Development mode");
                 app.UseDeveloperExceptionPage();
@@ -105,11 +122,11 @@ namespace SBAdmin.Web
                 app.UseStaticFiles(new StaticFileOptions
                 {
                     FileProvider = new PhysicalFileProvider(
-                        Path.Combine(env.ContentRootPath, "node_modules")),
+                        Path.Combine(_env.ContentRootPath, "node_modules")),
                     RequestPath = "/node_modules"
                 });
             }
-            if (env.IsProduction())
+            if (_env.IsProduction())
             {
                 logger.LogInformation("Production mode");
             }

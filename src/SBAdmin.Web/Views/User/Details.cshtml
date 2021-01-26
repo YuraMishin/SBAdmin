@@ -4,11 +4,7 @@
     Layout = "Admin/_Layout";
     ViewData["Title"] = "Details";
 }
-@section Styles{
-    @{
-        <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    }
-}
+
 <div>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Dashboard</a></li>
@@ -52,19 +48,8 @@
     <div>
         <a asp-controller="User" asp-action="Index">Back To List</a>
     </div>
-    
+
 
 
 
 </div>
-
-@section Scripts{
-    @{
-        <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
-        <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
-        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
-    }
-}

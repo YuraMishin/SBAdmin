@@ -7,15 +7,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>@ViewData["Title"]</title>
-    <environment include="Development">
-        @if (IsSectionDefined("AdminCSS"))
-        {
-            @RenderSection("AdminCSS", required: false)
-        }
-    </environment>
-    <environment include="Production">
 
-    </environment>
+    @if (IsSectionDefined("AdminCSS"))
+    {
+        @RenderSection("AdminCSS", required: false)
+    }
+
 </head>
 <body>
     <div class="">
@@ -23,16 +20,11 @@
     </div>
 
     @* Scripts section *@
-    <environment include="Development">
-        @if (IsSectionDefined("AdminJS"))
-        {
-            @RenderSection("AdminJS", required: false)
-        }
-    </environment>
 
-    <environment include="Production">
-
-    </environment>
+    @if (IsSectionDefined("AdminJS"))
+    {
+        @RenderSection("AdminJS", required: false)
+    }
 
     @RenderSection("Scripts", required: false)
 </body>

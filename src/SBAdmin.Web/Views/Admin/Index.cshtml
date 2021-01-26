@@ -4,11 +4,13 @@
 }
 
 <div>
-    @section Styles{
-        @{
-            <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <environment include="Development">
+        @section Styles{
+            @{
+                <link href="Resources/SBAdmin/vendors/dataTables/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+            }
         }
-    }
+    </environment>
 
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Dashboard</li>
@@ -23,14 +25,16 @@
     @* _DataTables *@
     <partial name="Admin/_DataTables" />
 
-    @section Scripts{
-        @{
-            <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-            <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
-            <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
-            <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-            <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-            <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
+    <environment include="Development">
+        @section Scripts{
+            @{
+                <script src="Resources/SBAdmin/vendors/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+                <script src="Resources/SBAdmin/assets/demo/chart-area-demo.js"></script>
+                <script src="Resources/SBAdmin/assets/demo/chart-bar-demo.js"></script>
+                <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+                <script src="Resources/SBAdmin/vendors/datatables/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+                <script src="Resources/SBAdmin/assets/demo/datatables-demo.js"></script>
+            }
         }
-    }
+    </environment>
 </div>

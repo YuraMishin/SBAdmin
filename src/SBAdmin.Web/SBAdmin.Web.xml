@@ -262,6 +262,12 @@
             </summary>
             <param name="options">AppContext</param>
         </member>
+        <member name="M:SBAdmin.Web.Data.AppDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method OnModelCreating
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
+        </member>
         <member name="T:SBAdmin.Web.Migrations.Initial">
             <summary>
             Class Initial.
@@ -285,6 +291,29 @@
             Method implements the migration
             </summary>
             <param name="modelBuilder"></param>
+        </member>
+        <member name="T:SBAdmin.Web.Migrations.SeedRoles">
+            <summary>
+            Class SeedRoles
+            </summary>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.SeedRoles.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Method Up
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.SeedRoles.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <summary>
+            Down
+            </summary>
+            <param name="migrationBuilder">migrationBuilder</param>
+        </member>
+        <member name="M:SBAdmin.Web.Migrations.SeedRoles.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Method BuildTargetModel
+            </summary>
+            <param name="modelBuilder">modelBuilder</param>
         </member>
         <member name="T:SBAdmin.Web.Models.User">
             <summary>
@@ -331,11 +360,12 @@
             Configuration
             </summary>
         </member>
-        <member name="M:SBAdmin.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:SBAdmin.Web.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             Constructor
             </summary>
             <param name="configuration">IConfiguration</param>
+            <param name="env">env</param>
         </member>
         <member name="M:SBAdmin.Web.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -343,13 +373,12 @@
             </summary>
             <param name="services">Services</param>
         </member>
-        <member name="M:SBAdmin.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Startup})">
+        <member name="M:SBAdmin.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Logging.ILogger{SBAdmin.Web.Startup})">
             <summary>
             Method gets called by the runtime to configure
             the HTTP request pipeline.
             </summary>
             <param name="app"></param>
-            <param name="env"></param>
             <param name="logger"></param>
         </member>
         <member name="T:SBAdmin.Web.ViewModels.ChangePasswordViewModel">

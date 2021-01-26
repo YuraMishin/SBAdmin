@@ -25,11 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-      <Folder Include="wwwroot\css" />
-      <Folder Include="wwwroot\js" />
+      <Folder Include="wwwroot\css\admin\base\" />
+      <Folder Include="wwwroot\css\admin\index\" />
       <Folder Include="wwwroot\images" />
       <Folder Include="node_modules\" />
       <Folder Include="Resources\" />
+      <Folder Include="wwwroot\js\admin\base\" />
+      <Folder Include="wwwroot\js\index\" />
   </ItemGroup>
 
 </Project>

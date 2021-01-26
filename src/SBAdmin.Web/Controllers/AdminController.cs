@@ -81,7 +81,7 @@ namespace SBAdmin.Web.Controllers
                     await _signInManager.SignInAsync(user, false);
                     await _userManager.AddToRoleAsync(user, "Admin");
                     await _userManager.AddToRoleAsync(user, "User");
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Admin");
                 }
 
                 foreach (var error in result.Errors)
